@@ -44,7 +44,7 @@ def _local(url):
 async def test_upload_round_trip_lands_under_first_root(root, client):
     slot = json.loads(await _prepare_upload("../../etc/report 1.pdf"))
     assert slot["file_path"].startswith(str(root / "uploads"))
-    assert slot["file_path"].endswith("/report 1.pdf")
+    assert Path(slot["file_path"]).name == "report 1.pdf"
 
     response = client.put(_local(slot["url"]), content=iter([b"%PDF-", b"bytes"]))
 
