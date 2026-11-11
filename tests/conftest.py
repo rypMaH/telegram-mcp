@@ -4,6 +4,13 @@ import os
 
 import pytest
 
+from session_env_guard import neutralize_dotenv_accounts
+
+# Must run before anything imports `telegram_mcp.runtime`, which calls
+# `load_dotenv()` at import and would otherwise pick up the developer's
+# labelled accounts from `.env` (see session_env_guard for why blanking works).
+neutralize_dotenv_accounts()
+
 os.environ.setdefault("TELEGRAM_API_ID", "12345")
 os.environ.setdefault("TELEGRAM_API_HASH", "dummy_hash")
 os.environ.setdefault("TELEGRAM_SESSION_NAME", "test_session")
