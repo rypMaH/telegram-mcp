@@ -189,6 +189,7 @@ claude_desktop_config.json
 
 # Test files
 .cursor/
+.codex/
 *.tmp
 mcp_errors.log
 telegram_test.log
